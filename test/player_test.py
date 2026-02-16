@@ -18,7 +18,7 @@ class TestPlayer(unittest.TestCase):
     def test_change_details(self):
         self.player._name = "SpongeBob"
         self.player._uid = "999999"
-
+  # :3
         player_object_str = self.player.__str__()
 
         print(f'Test case 2: Modify player ID and Name\n{player_object_str}\n')
