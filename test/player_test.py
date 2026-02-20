@@ -3,26 +3,37 @@ from app.player import Player
 
 class TestPlayer(unittest.TestCase):
     def setUp(self):
-        # Sets up a new stack instance for each test
-        self.player = Player('123456', 'TricksyPixel')
+        self.player = Player()
 
-    # Test Case 1: Test player created with username TricksyPixel, ID 123456 .
-    def test_player_creation(self):
-        # Return the object as a readable string
-        player_object_str = self.player.__str__()
+    # [ Test Case 1 ] - Give the player a name.
+    def test_player_name(self):
+        player_created_with_username = False
+        
+        self.player._name = "DefaultUsername"
+        #self.player._name = "SomeOtherName"
+        
+        # Check if _name of this instance is now "DefaultUsername"
+        player_created_message = self.player.__str__()
 
-        print(f'Test case 1: Test player created with username TricksyPixel, ID 123456\n{player_object_str}\n')
-        self.assertTrue(player_object_str, "Created a player object successfully.")
+        if "DefaultUsername" in player_created_message:
+            player_created_with_username = True
 
-    # Test Case 2: Test modifying uid and player_name
-    def test_change_details(self):
-        self.player._name = "SpongeBob"
+        self.assertTrue(player_created_with_username, "Test Case 1: Error - Name: 'DefaultUsername' not contained in string.")
+
+    # [ Test Case 2 ] - Give the player an ID.
+    def test_player_uid(self):
+        player_created_with_uid = False
+        
         self.player._uid = "999999"
-  # :3
-        player_object_str = self.player.__str__()
+        #self.player._uid = "999991"
+        
+        # Check if _uid of this instance is now "999999"
+        player_created_message = self.player.__str__()
 
-        print(f'Test case 2: Modify player ID and Name\n{player_object_str}\n')
-        self.assertTrue(player_object_str, 'Player ID: 999999 \nPlayer Username: SpongeBob')
+        if "999999" in player_created_message:
+            player_created_with_uid = True
+
+        self.assertTrue(player_created_with_uid, "Test Case 2: Error - UID: '999999' not contained in string.")
 
 if __name__ == '__main__':
     unittest.main()
