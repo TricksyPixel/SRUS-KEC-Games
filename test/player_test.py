@@ -9,10 +9,10 @@ class TestPlayer(unittest.TestCase):
     def test_player_name(self):
         player_created_with_username = False
         
-        self.player._name = "DefaultUsername"
-        #self.player._name = "SomeOtherName"
+        self.player.__name = "DefaultUsername"
+        #self.player.__name = "SomeOtherName"
         
-        # Check if _name of this instance is now "DefaultUsername"
+        # Check if __name of this instance is now "DefaultUsername"
         player_created_message = self.player.__str__()
 
         if "DefaultUsername" in player_created_message:
@@ -24,10 +24,10 @@ class TestPlayer(unittest.TestCase):
     def test_player_uid(self):
         player_created_with_uid = False
         
-        self.player._uid = "999999"
-        #self.player._uid = "999991"
+        self.player.__uid = "999999"
+        #self.player.__uid = "999991"
         
-        # Check if _uid of this instance is now "999999"
+        # Check if __uid of this instance is now "999999"
         player_created_message = self.player.__str__()
 
         if "999999" in player_created_message:
