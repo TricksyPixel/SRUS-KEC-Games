@@ -18,31 +18,21 @@ class TestPlayerList(unittest.TestCase):
     # [ Test Case 1 ] - Test what happens if a new node is added to an empty list.
     def test_add_new_node_to_empty_list(self):
         
-        empty_list_result = self.player_list.is_empty()
+        self.player_list.insert_first(self.player_1.__uid)
 
-        if empty_list_result:
-            self.player_list.insert_first(self.player_1, self.player_1.__uid)
-            self.player_list.insert_last(self.player_1, self.player_1.__uid)
-            self.player_list.insert_first(self.player_1, self.player_1.__uid)
-
-            final_list_result = self.player_list.is_empty()
+        empty_list = self.player_list.is_empty()
         
-        self.assertTrue(final_list_result == False, "Test Case 1: Error - List still empty after adding player.")
+        self.assertFalse(empty_list, "Test Case 1: Error - List still empty after trying to add player.")
+        self.assertEqual(self.player_list._first, self.player_1, "Test Case 1: Error - First node is not the player added.")
 
     # [ Test Case 2 ] - Test what happens if a new node is added to an active list.
     def test_player_uid(self):
-        self.player_list.insert_first(self.player_2, self.player_2.__uid)
-        self.player_list.insert_last(self.player_2, self.player_2.__uid)
-        self.player_list.insert_first(self.player_2, self.player_2.__uid)
+        self.player_list.insert_first(self.player_2.__uid)
+        self.player_list.insert_first(self.player_3.__uid)
         
-        empty_list_result = self.player_list.is_empty()
+        # NOTE: Working here
 
-        if empty_list_result:
-            # NOTE: Working here
-
-            final_list_result = self.player_list.is_empty()
-        
-        self.assertTrue(final_list_result == False, "Test Case 1: Error - List still empty after adding player.")
+        self.assertTrue(final_list_result, "Test Case 1: Error - First player .")
 
 if __name__ == '__main__':
     unittest.main()
