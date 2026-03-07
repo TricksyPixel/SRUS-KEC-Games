@@ -1,9 +1,9 @@
 from app.player_node import PlayerNode
-from app.player import Player
 
 class PlayerList(object):
     def __init__(self):
         self.__first = None
+        self.__last = None
     
     def is_empty(self):
         return self.__first is None
@@ -18,8 +18,20 @@ class PlayerList(object):
     
     def insert_first(self, key):
         new_player_node = PlayerNode(key)
+        if self.__first is None:
+            self.__last = new_player_node
+            
         new_player_node.next = self.__first
         self.__first = new_player_node
+    
+    def insert_last(self, key):
+        new_player_node = PlayerNode(key)
+        if self.__first is None:
+            self.__first = new_player_node
+        else:
+            self.__last.next = new_player_node
+
+            self.last = new_player_node
 
     def delete(self, key):
         current = self.__first
