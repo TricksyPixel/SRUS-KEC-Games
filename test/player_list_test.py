@@ -5,37 +5,44 @@ from app.player_node import PlayerNode
 
 class TestPlayerList(unittest.TestCase):
     def setUp(self):
-        self.PlayerList = PlayerList()
-
-    # [ Test Case 1 ] - Give the player a name.
-    def test_player_name(self):
-        player_created_with_username = False
         
-        self.player.__name = "DefaultUsername"
-        #self.player.__name = "SomeOtherName"
+        # Create set of Players
+        self.player_1 = Player("000001", "Bobba")
+        self.player_2 = Player("123456", "JohnCena")
+        self.player_3 = Player("020304", "Doolittle")
+        self.player_4 = Player("999999", "Cloud")
+
+        # Create the Player List ready for the Players to go into
+        self.player_list = PlayerList()
+
+    # [ Test Case 1 ] - Test what happens if a new node is added to an empty list.
+    def test_add_new_node_to_empty_list(self):
         
-        # Check if __name of this instance is now "DefaultUsername"
-        player_created_message = self.player.__str__()
+        empty_list_result = self.player_list.is_empty()
 
-        if "DefaultUsername" in player_created_message:
-            player_created_with_username = True
+        if empty_list_result:
+            self.player_list.insert_first(self.player_1, self.player_1.__uid)
+            self.player_list.insert_last(self.player_1, self.player_1.__uid)
+            self.player_list.insert_first(self.player_1, self.player_1.__uid)
 
-        self.assertTrue(player_created_with_username, "Test Case 1: Error - Name: 'DefaultUsername' not contained in string.")
+            final_list_result = self.player_list.is_empty()
+        
+        self.assertTrue(final_list_result == False, "Test Case 1: Error - List still empty after adding player.")
 
-    # [ Test Case 2 ] - Give the player an ID.
+    # [ Test Case 2 ] - Test what happens if a new node is added to an active list.
     def test_player_uid(self):
-        player_created_with_uid = False
+        self.player_list.insert_first(self.player_2, self.player_2.__uid)
+        self.player_list.insert_last(self.player_2, self.player_2.__uid)
+        self.player_list.insert_first(self.player_2, self.player_2.__uid)
         
-        self.player.__uid = "999999"
-        #self.player.__uid = "999991"
+        empty_list_result = self.player_list.is_empty()
+
+        if empty_list_result:
+            # NOTE: Working here
+
+            final_list_result = self.player_list.is_empty()
         
-        # Check if __uid of this instance is now "999999"
-        player_created_message = self.player.__str__()
-
-        if "999999" in player_created_message:
-            player_created_with_uid = True
-
-        self.assertTrue(player_created_with_uid, "Test Case 2: Error - UID: '999999' not contained in string.")
+        self.assertTrue(final_list_result == False, "Test Case 1: Error - List still empty after adding player.")
 
 if __name__ == '__main__':
     unittest.main()
