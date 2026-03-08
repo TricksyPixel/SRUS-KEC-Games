@@ -31,7 +31,7 @@ class PlayerList(object):
         else:
             self.__last.__next = new_player_node
 
-            self.last = new_player_node
+            self.__last = new_player_node
 
     def delete(self, key):
         current = self.__first
@@ -55,21 +55,23 @@ class PlayerList(object):
 
         return temporary_node
     
-    def display_list_forwards(self):
-        print("List first to last: ")
-        current = self.__first
-        while current is not None:
-            print(current)
+    def display(self, forwards = True):
+        if forwards:
+            # Prints list forwards
+            print("List first to last: ")
+            current = self.__first
+            while current is not None:
+                print(current)
             current = current.__next
-    
-    def display_list_backwards(self):
-        print("List last to first: ")
-        current = self.__last
-        while current:
-            temp = current.__next
-            current.__previous = temp
-            current = current.__previous
+        else:
+            # Prints list backwards
+            print("List last to first: ")
+            current = self.__last
+            while current:
+                temp = current.__next
+                current.__previous = temp
+                current = current.__previous
         
-        temp = self.__last
-        self.__last = self.__first
-        self.__first = temp
+            temp = self.__last
+            self.__last = self.__first
+            self.__first = temp
